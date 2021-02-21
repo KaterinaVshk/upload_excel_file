@@ -9,4 +9,4 @@ To run the application, you must run the following commands:
 2. rails s
 
 
-***Requires: ruby on rails, mysql, ruby - installed
+**Requires: ruby on rails, mysql, ruby - installed
