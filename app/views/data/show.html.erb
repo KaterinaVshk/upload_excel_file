@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Имя файла:</strong>
+  <%= @datum.file_attch_file_name%>
+</p>
+<br>
+<table border="1" width="70% "cellpadding="4" cellspacing="0">
+  
+  <tr>
+    <th rowspan="2">Б/сч</th>
+    <th colspan="2">ВХОДЯЩЕЕ САЛЬДО</th>
+    <th colspan="2">ОБОРОТЫ</th>
+    <th colspan="2">ИСХОДЯЩЕЕ САЛЬДО</th>
+  </tr>
+
+  <tr>
+    <th>Актив</th>
+    <th>Пассив</th>
+    <th>Дебет</th>
+    <th>Кредит</th>
+    <th>Актив</th>
+    <th>Пассив</th>
+  </tr>
+
+  <% @id_class = @getting_data[0]["id_class"] %>
+  <tr>
+    <th colspan="7" style="text-align:center">
+      <p><%= @classes.where("id = ?",@id_class).first[:name]%></p>
+    </th>
+  </tr>
+  <% @getting_data.each do |record| %>
+    <% if record["id_class"]!= @id_class%>
+      <% @id_class = record["id_class"]%>
+      <tr>
+      <th colspan="7" style="text-align:center"><p><%= @classes.where("id = ?",@id_class).first[:name] %></p></th>
+      </tr>
+    <%else%>
+      <tr>
+      <% if record["account"]/100==0 %>
+
+        <td><b><%= record["account"] %></b></td>
+        <td><b><%= record["in_assets"] %></b></td>
+        <td><b><%= record["in_passive"] %></b></td>
+        <td><b><%= record["credit"] %></b></td>
+        <td><b><%= record["debit"] %></b></td>
+        <td><b><%= record["out_assets"] %></b></td>
+        <td><b><%= record["out_passive"] %></b></td>
+      
+        <%else%>
+        <td><%= record["account"] %></td>
+        <td><%= record["in_assets"] %></td>
+        <td><%= record["in_passive"] %></td>
+        <td><%= record["credit"] %></td>
+        <td><%= record["debit"] %></td>
+        <td><%= record["out_assets"] %></td>
+        <td><%= record["out_passive"] %></td>
+      <%end%>
+      </tr>
+    <%end%>
+  <% end %>
+
+
+</table>
+
+<%= link_to 'Back', data_path , :style=>'color: blue;'%>

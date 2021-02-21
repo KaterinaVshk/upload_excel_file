@@ -1,0 +1,21 @@
+<%= form_with(model: datum, local: true) do |form| %>
+  <% if datum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(datum.errors.count, "error") %> prohibited this datum from being saved:</h2>
+
+      <ul>
+        <% datum.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+<% end %>
+
+<%= simple_form_for @datum, url: data_path do |form| %>
+  <%= form.input :file_attch, as: :file , label: 'File:'%>
+  <br>
+  <%= form.submit "Click Here" %>
+<% end %>

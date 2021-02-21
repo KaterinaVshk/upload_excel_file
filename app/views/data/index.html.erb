@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Файлы</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Имя файла</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @data.each do |datum| %>
+      <tr>
+        <td><%= datum.file_attch_file_name %></td>
+        <td><%= link_to 'Показать', datum %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Добавить новый файл', new_datum_path %>
